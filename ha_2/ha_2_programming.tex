@@ -1,0 +1,193 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+\usepackage{physics}
+
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amsfonts, amssymb} % куча стандартных математических плюшек
+
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+\usepackage{url} % to use \url{link to web}
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Statistics 4 Market Research}
+\chead{}
+\rhead{HA}
+\lfoot{2022-2023}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{english}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+%\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+%\setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+%% эконометрические сокращения
+\DeclareMathOperator{\Cov}{\mathbb{C}ov}
+\DeclareMathOperator{\Corr}{\mathbb{C}orr}
+\DeclareMathOperator{\Var}{\mathbb{V}ar}
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\DeclareMathOperator{\plim}{\mathrm{plim}}
+
+\DeclareMathOperator{\E}{\mathbb{E}}
+% \DeclareMathOperator{\tr}{trace}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\pCorr}{\mathrm{p}\mathbb{C}\mathrm{orr}}
+
+
+\newcommand \hb{\hat{\beta}}
+\newcommand \hs{\hat{\sigma}}
+\newcommand \htheta{\hat{\theta}}
+\newcommand \s{\sigma}
+\newcommand \hy{\hat{y}}
+\newcommand \hY{\hat{Y}}
+\newcommand \e{\varepsilon}
+\newcommand \he{\hat{\e}}
+\newcommand \z{z}
+\newcommand \hVar{\widehat{\Var}}
+\newcommand \hCorr{\widehat{\Corr}}
+\newcommand \hCov{\widehat{\Cov}}
+\newcommand \cN{\mathcal{N}}
+\newcommand \RR{\mathbb{R}}
+\newcommand \NN{\mathbb{N}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cH}{\mathcal{H}}
+
+
+\begin{document}
+
+\section*{Home Assignment 2.}
+
+
+
+
+
+\begin{enumerate}
+	
+	\item Set random seed to $M*100 + D$, where $M$ and $D$ is  your Month and Date of birth, respectively.
+	
+	Generate two samples $X$ of size 20   and $Y$ of size 200 s.t.
+	$E(X) \sim Unif[0,1], E(Y) \sim Unif[0,1]$
+	from 
+	
+	\begin{itemize}
+		\item two normal distributions with the same variance $\sigma^2_X = \sigma^2_Y = 0.1$;
+		\item two normal distributions with 
+		if $M$ is odd $\sigma^2_X = 0.1$  and  $\sigma^2_Y = 1$, else
+		$\sigma^2_X = 1$  and  $\sigma^2_Y = 0.1$ 
+		\item two normal distributions with 3 outliers added afterwards $Out_i \sim Exp(10) * (-1)^{U\{1,2\}}$ ;
+		\item two exponential distributions.
+	\end{itemize}
+	
+	
+	\begin{enumerate}
+		\item Conduct $t$-test, Welch test, Mann-Whitney test 10000 times. 
+		\item Calculate nominal type I error rate and power (to calculate type I error fix mean for $Y$ the same as for $X$). 
+		\item For each case described above plot how nominal power changes for different values of parameters of the distribution. 
+		\item Based on the plots, which test is the most appropriate in each of the cases. Will your answer change if both  sample size are increased by 10.
+		
+		
+	\end{enumerate}
+
+	\item  Use dataset \texttt{SIC33.csv} with the following data:
+	
+	\begin{itemize}
+		\item \textit{output} -- Value added.
+		\item  \textit{labor}  -- Labor input.
+		\item  \textit{capital} -- Capital stock.
+	\end{itemize}
+	
+	Consider the following model $\ln Y = \beta_0 + \beta_1 \ln (K) + \beta_1 \ln (L)  + u$. 
+	Suppose we are interested in estimating the quantity $\gamma =  \beta_1 +\beta_2 $ from the data. 
+	Test $H_0 : \gamma = 1$ against $H_a : \gamma \neq 1$ using:
+	
+	
+	\begin{enumerate}
+		\item Jackknife estimator;
+		\item paired bootstrap;
+		\item wild bootstrap (bootstrapping the residuals).
+		
+	\end{enumerate}
+	
+	How  the procedure should be  changed in case $u$ is heteroskedastic? 
+	
+	
+	\item  Consider $K$ and $L$  from the same dataset \texttt{SIC33.csv}. 
+	
+	
+	\begin{enumerate}
+		\item Illustrate principal  components on a scatter plot. 
+		\item Calculate the explained variance by each component,  the weight of $K$ in the 1st component and  the weight of 2nd component in the reconstruction of $L$.
+		\item Repeat the analysis for $\ln (K)$ and $\ln (L)$. 
+	\end{enumerate}
+	
+	
+	
+
+
+\end{enumerate}
+
+
+
+
+
+
+Deadline: \textbf{2022-12-18, 21:00}. 
+
+
+\end{document}
+
