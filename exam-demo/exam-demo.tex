@@ -1,0 +1,194 @@
+% arara: xelatex
+\documentclass[12pt]{article}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath, amssymb, amsthm} % куча стандартных математических плюшек
+
+\usepackage{amsfonts}
+
+\usepackage{comment}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+
+\usepackage{hyperref} % гиперссылки
+
+\usepackage{multicol} % текст в несколько столбцов
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Final demo}
+\chead{DON'T PANIC}
+\rhead{2022-demo}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\E}{\mathbb{E}}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\plim}{plim}
+\DeclareMathOperator{\pCorr}{pCorr}
+
+
+\newcommand{\cN}{\mathcal{N}}
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos - печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{english}
+\setotherlanguages{russian}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+% \setlist[enumerate, 2]{label=\asbuk*),ref=\asbuk*}
+
+
+\begin{document}
+
+Rules: two parts, two hours in total, one A4 cheat sheet is allowed. 
+
+\vspace{1cm}
+
+Part 1. Test part, only numerical answers are checked, 6 questions, each question gives 1 point but no more than 4 points in total. 
+This part is very predictable :) 
+
+\begin{enumerate}
+    \item (bootstrap) I have a sample $X_1$, \ldots, $X_{100}$.
+    
+    I generate one naive bootstrap sample $X^{*}_{1}$, \ldots, $X^{*}_{100}$. 
+
+    What is the probability that the first observation will be present in the bootstrap sample 2 times or more?
+
+    \item (welch) We have data for an $AB$-experiment $\bar X_a = 10$, $\bar X_b = 12$, 
+    $n_a = 20$, $n_b = 30$, $\sum (X_i^a - \bar X_a)^2 = 100$, $\sum (X_i^b - \bar X_b)^2 = 200$.
+
+    Calculate the standard error of $\bar X_a - \bar X_b$ for the Welch test. 
+    
+    \item (mw test) I have five results of two runners $A$ and $B$ for the 5 km race: 25:12 (A), 26:34 (B), 27:43 (A), 28:12 (A), 29:05 (B).
+    
+    Calculate Mann-Whitney statistic $U_A$ that tests the null-hypothesis of equal distributions of time. 
+    
+    (The statistic $U_A$ should positively depend on the ranks of the runner $A$). 
+
+    \item (multiple comparison) I have 100 hypothesis with independent statistics. 
+    The null hypothesis for all 100 cases is actually true, but I don't know this. 
+    
+    I calculate all p-values. 
+    If the two lowest p-value are both lower than $0.05$ I wrongly conclude that not all $H_0$ are true. 
+    Otherwise I correctly conclude that all $H_0$ are true. 
+
+    What is the probability that I will get the correct conclusion?
+
+    \item (sample size) My target variable is binary and I wish 
+    minimal detectable effect equal to $0.01$, probability of I-error  not greater than $0.02$, 
+    probability of II-error not greater than $0.10$, control and experimental group of the same size equal to $n$.
+
+    What is minimal value of $n$?
+
+
+    \item (anova 1+2) Vasiliy loves to eat shaurma. He has three local shaurma dealers. Vasiliy bought 7 shaurmas from each dealer. 
+    and measured their weight. He would like to test the hypothesis that mean weight is the same for all dealers. 
+
+    Total sum of squares is 1000, between sum of squares is 500. 
+
+    Calculate the $F$-statistic to test the hypothesis.
+        
+\end{enumerate}
+
+\newpage
+Part 2. Open part, solutions are required, 4 problems, each problem gives 2 points but no more than 6 points in total.
+This part is almost unpredictable :)
+
+\begin{enumerate}
+ \item Let random variables $Y_1$, \ldots, $Y_n$ be iid uniform $U[0;1]$.
+    Consider the naive bootstrap sample $Y_1^*$, \ldots, $Y_n^*$.
+
+    Find $\Var(Y_1^*)$, $\Cov(Y_1^*, Y_2^*)$, $\Var(\bar Y^*)$.
+
+    \item Winnie-the-Pooh simulteneously tests $h$ null hypothesis using independent samples. 
+    All the null hypothesis are true but Winnie does not know it. 
+    
+    \begin{enumerate}
+        \item What is the probability that the highest P-value will be greater than $0.95$?
+        \item What is the possible range for the probability in point (a) if exactly one null hypothesis is false?
+    \end{enumerate}
+
+    \item The correlation matrix of standardized variables $a$, $b$ and $c$ is given by
+    \[
+    C = \begin{pmatrix}
+        1 & 0.2 & 0 \\
+         & 1 &  0.2 \\
+         & & 1 \\
+    \end{pmatrix}
+    \]
+
+    Let $p_1$, $p_2$ and $p_3$ be the principal components. 
+
+    \begin{enumerate}
+        \item Express $p_1$ in terms of $a$, $b$ and $c$. 
+        \item Express $b$ in terms of $p_1$, $p_2$ and $p_3$. 
+        \item How would you restore the second observation of variable $b$ if you know that first and second 
+        components for the second observation are equal to $-1$ and $2$ respectively?
+    \end{enumerate}
+
+    \item Consider the Mann-Whitney test with possible ties. 
+    The variables $X_1$, $X_2$, \ldots, $X_{n_x}$ are iid Poisson with rate $\lambda =1$. 
+    The variables $Y_1$, $Y_2$, \ldots, $Y_{n_y}$ are iid Poisson with the same rate, independent from $X$ sample. 
+
+    Let $L$ be the number of all pairs $(X_i, Y_j)$ such that $X_i > Y_j$.
+
+    \begin{enumerate}
+        \item Find $\E(L)$, $\Var(L)$. 
+        \item What is the probability that the ordered sequence of all $X_i$ and $Y_j$ will start with 
+        three or more members from $X$-sample?
+    \end{enumerate}
+
+\end{enumerate}
+
+
+\end{document}

@@ -1,4 +1,7 @@
 .Rhistory
 *.log
 *.aux
+*.out
+*.blg
+*.fls
 
