@@ -1,0 +1,34 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+na = sample(2:3, size = 1)
+nb = sample(3:4, size = 1)
+
+sol_round = na * nb / 2
+```
+
+Question
+========
+I have results of two runners A and B: `r na` results for A and `r nb` results
+for B. The running times for both runners are continuously distributed.
+
+Consider the Mann-Whitney test statistic $U_a$ that positively depends on the 
+rank sum for the runner A. 
+
+Find the expected value $\mathbb{E}(A)$ under the null-hypothesis of equal running 
+time distributions. 
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Mann–Whitney test
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/Mann–Whitney test

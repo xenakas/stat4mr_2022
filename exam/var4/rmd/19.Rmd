@@ -1,0 +1,34 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+library(knitr)
+data = data.frame(id = 1:8, y = round(rnorm(8, 20, 4), 0), z = c(0, 0, 0, 0, 1, 1, 1, 1),
+                  x = c(5, 11, 19, 37, 48, 12, 4, 17))
+
+to_match = sample(1:8, size = 1)
+answers = c(7, 6, 8, 5, 4, 2, 1, 3)
+sol_round = answers[to_match]
+```
+
+Question
+========
+Vasiliy uses knn algorithm with 1 neighbor to match observations. 
+Here $z$ is treatment indicator, $x$ is predictor and $y$ is target variable.
+
+`r kable(data)`
+
+Which individual will be matched with individual number `r to_match`?
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Mann–Whitney test
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/Matching

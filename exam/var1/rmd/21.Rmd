@@ -1,0 +1,36 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+n = sample(1:4, size = 1) * 100
+alpha = sample(1:5, size = 1)
+p = alpha / 100 
+
+conclusion = sample(c('correct', 'wrong'), size = 1)
+
+
+sol_round = n * p * (1 - p)
+```
+
+Question
+========
+I do $`r n`$ independent tests at significance level `r alpha`\%. 
+The null hypothesis for all $`r n`$
+tests is actually true, but I don’t know this.
+
+Let $N$ be the number of my `r conclusion` conclusions. 
+
+What is the variance of $N$?
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Mann–Whitney test
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/Multiple comparison

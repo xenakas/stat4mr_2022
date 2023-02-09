@@ -1,0 +1,34 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+vx = sample(1:4, size = 1)^2
+vy = sample(1:4, size = 1)^2
+alpha = sample(1:9, size = 1) / 10
+
+
+
+sol_round = round(alpha * sqrt(vy / vx), digits = 2)
+```
+
+Question
+========
+The variables $X$ and $Y$ are jointly normal with zero means, $\mathrm{Var}(X) = `r vx`$, 
+$\mathrm{Var}(Y) = `r vy`$.
+
+We know that $X -`r alpha` Y$ is not correlated with $Y$. 
+
+What is the correlation between $X$ and $Y$?
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Sample size
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market research/Contingency table

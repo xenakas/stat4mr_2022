@@ -1,0 +1,37 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+k = sample(2:5, size = 1)
+green_hat = 3 / ( 5 + 5 * k)
+yellow_hat = k * green_hat
+red_hat = 1 - green_hat - yellow_hat
+
+colors = c('red', 'yellow', 'green')
+answers = c(red_hat, yellow_hat, green_hat)
+id = sample(1:3, size = 1)
+color = colors[id]
+
+sol_round = round(answers[id], digits = 2)
+```
+
+Question
+========
+I ate five M&Ms: red, green, green, red and yellow. 
+Only these three colors are possible. 
+I assume that $p_{yellow}=`r k` p_{green}$.
+
+What is the estimated probability of `r color` color?
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Sample size
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market research/Contingency table

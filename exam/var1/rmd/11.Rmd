@@ -1,0 +1,64 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+corrM = diag(nrow = 3)
+corrM[1, 2] = sample(c(-2, -1, 1, 2), size = 1) / 10
+corrM[2, 3] = sample(c(-2, -1, 1, 2), size = 1) / 10
+
+corrM[2, 1] = corrM[1, 2]
+corrM[3, 1] = corrM[1, 3]
+corrM[3, 2] = corrM[2, 3]
+
+eigs = eigen(corrM)
+eigs$values = round(eigs$values, digits = 3)
+eigs$vectors = round(eigs$vectors, digits = 3)
+
+
+bmatrix = function(x, digits = 3) {
+  text = '\\begin{pmatrix}\n'
+  
+  x = as.matrix(x)
+  x = round(x, digits = digits)
+  for (i in 1:nrow(x)) {
+    line = paste0(x[i, ], sep = '', collapse = ' & ')
+    text = paste0(text, line, '\\\\\n')
+  }
+  
+  text = paste0(text, '\\end{pmatrix}')
+  return(text)
+}
+
+ans  = sum(eigs$vectors[, 1])
+sol_round = round(ans, digits = 2)
+```
+
+Question
+========
+Correlation matrix of three variables is given by
+$$
+C = `r bmatrix(corrM)`
+$$.
+Eigenvalues with corresponding eigenvectors are 
+$$
+\lambda_1 = `r eigs$values[1]`, \, v_1 = `r bmatrix(eigs$vectors[, 1])`, \,
+\lambda_2 = `r eigs$values[2]`, \, v_2 = `r bmatrix(eigs$vectors[, 2])`, \,
+\lambda_3 = `r eigs$values[3]`, \, v_3 = `r bmatrix(eigs$vectors[, 3])`.
+$$
+Calculate the change of the first principal component if we increase each original variable by one standard deviation. 
+
+Provide the answer with 2 decimal digits.
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: PCA

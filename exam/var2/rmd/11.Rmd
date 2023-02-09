@@ -1,0 +1,39 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+na = sample(11:19, size = 1) 
+nb = sample(11:19, size = 1) 
+bar_xa = sample(50:60, size = 1) / 10
+bar_xb = sample(50:60, size = 1) / 10
+ss_a = sample(80:90, size = 1) * 10 
+ss_b = sample(80:90, size = 1) * 10
+
+hat_var = ss_a / (na - 1) / na + ss_b / (nb - 1) / nb
+se = sqrt(hat_var)
+
+sol_round = round(hat_var, digits = 2)
+```
+
+Question
+========
+We have data of an AB experiment: $\bar X_a = `r bar_xa`$, $\bar X_b = `r bar_xb`$, 
+$n_a = `r na`$, $n_b = `r nb`$, $\sum (X_i^a - \bar X_a)^2 = `r ss_a`$, 
+$\sum (X_i^b - \bar X_b)^2 = `r ss_b`$.
+
+Calculate the estimate of variance of $\bar X_a - \bar X_b$ for the Welch test.
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Welch test

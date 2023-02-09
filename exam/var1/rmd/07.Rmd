@@ -1,0 +1,57 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+p1 = sample(1:4, size = 1) / 10
+mu2a = sample(1:5, size = 1)
+mu2b = mu2a + sample(1:5, size = 1)
+sigma11 = 4
+sigma22 = 19
+sigma12 = -2
+
+ratio = (sigma22 * mu2a - sigma12 * mu2b) / (sigma11 * mu2b - sigma12 * mu2a)
+
+sol_round = round(ratio, digits = 2)
+```
+
+Question
+========
+Consider linear discriminant analysis model with two classes and two explanatory variables $x = (a, b)$. 
+
+The model is given by
+$$
+(x \mid y=1) \sim \mathcal{N}\left(\mu_1; \Sigma \right), \quad (x \mid y=2) \sim \mathcal{N}\left(\mu_2; \Sigma \right), \quad \mathbb{P(y=1) = `r p1`},
+$$
+where 
+$$
+\mu_1 = \begin{pmatrix}
+0 \\
+0
+\end{pmatrix}, \quad
+\mu_2 = \begin{pmatrix}
+`r mu2a` \\
+`r mu2b` \\
+\end{pmatrix}, \quad
+\Sigma = \begin{pmatrix}
+`r sigma11` & `r sigma12` \\
+`r sigma12` & `r sigma22` \\
+\end{pmatrix}.
+$$
+
+Find the line $k_a \cdot a + k_b \cdot b = 1$ that separates the two classes, ie 
+any point on the line has equal conditional probabilities to be in each class. 
+
+Provide the ratio $k_a / k_b$ as the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: LDA

@@ -1,0 +1,239 @@
+% arara: xelatex: {shell: yes}
+%% arara: biber
+%% arara: xelatex: {shell: yes}
+%% arara: xelatex: {shell: yes}
+\documentclass[12pt]{article}
+
+\usepackage{etoolbox} % для условия if-else
+\newtoggle{excerpt} % помечаем, что это отрывок, а далее в тексте может использовать
+\toggletrue{excerpt}
+% команду \iftoggle{excerpt}{yes}{no}
+
+\usepackage{tikz} % картинки в tikz
+\usepackage{microtype} % свешивание пунктуации
+
+\usepackage{array} % для столбцов фиксированной ширины
+
+\usepackage{indentfirst} % отступ в первом параграфе
+
+\usepackage{sectsty} % для центрирования названий частей
+\allsectionsfont{\centering}
+
+\usepackage{amsmath} % куча стандартных математических плюшек
+
+\usepackage{comment}
+\usepackage{amsfonts}
+
+\usepackage[top=2cm, left=1.2cm, right=1.2cm, bottom=2cm]{geometry} % размер текста на странице
+
+\usepackage{lastpage} % чтобы узнать номер последней страницы
+
+\usepackage{enumitem} % дополнительные плюшки для списков
+%  например \begin{enumerate}[resume] позволяет продолжить нумерацию в новом списке
+\usepackage{caption}
+
+
+\usepackage{fancyhdr} % весёлые колонтитулы
+\pagestyle{fancy}
+\lhead{Statistics for Market Research}
+\chead{}
+\rhead{Retake, 2023-01-23}
+\lfoot{}
+\cfoot{}
+\rfoot{\thepage/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+
+
+\usepackage{todonotes} % для вставки в документ заметок о том, что осталось сделать
+% \todo{Здесь надо коэффициенты исправить}
+% \missingfigure{Здесь будет Последний день Помпеи}
+% \listoftodos --- печатает все поставленные \todo'шки
+
+
+% более красивые таблицы
+\usepackage{booktabs}
+% заповеди из докупентации:
+% 1. Не используйте вертикальные линни
+% 2. Не используйте двойные линии
+% 3. Единицы измерения - в шапку таблицы
+% 4. Не сокращайте .1 вместо 0.1
+% 5. Повторяющееся значение повторяйте, а не говорите "то же"
+
+\usepackage{multicol}
+
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+
+\setmainlanguage{russian}
+\setotherlanguages{english}
+
+% download "Linux Libertine" fonts:
+% http://www.linuxlibertine.org/index.php?id=91&L=1
+\setmainfont{Linux Libertine O} % or Helvetica, Arial, Cambria
+% why do we need \newfontfamily:
+% http://tex.stackexchange.com/questions/91507/
+\newfontfamily{\cyrillicfonttt}{Linux Libertine O}
+
+\AddEnumerateCounter{\asbuk}{\russian@alph}{щ} % для списков с русскими буквами
+\setlist[enumerate, 2]{label=\alph*),ref=\alph*} % \alph* \asbuk* \arabic*
+
+%% эконометрические сокращения
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\newcommand \hb{\hat{\beta}}
+\newcommand \hs{\hat{\sigma}}
+\newcommand \htheta{\hat{\theta}}
+\newcommand \s{\sigma}
+\newcommand \hy{\hat{y}}
+\newcommand \hY{\hat{Y}}
+\newcommand \e{\varepsilon}
+\newcommand \he{\hat{\e}}
+\newcommand \z{z}
+\newcommand \hVar{\widehat{\Var}}
+\newcommand \hCorr{\widehat{\Corr}}
+\newcommand \hCov{\widehat{\Cov}}
+\newcommand \cN{\mathcal{N}}
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\DeclareMathOperator{\plim}{plim}
+
+
+
+\usepackage{color,url,amsthm,amssymb,longtable,eurosym}
+\newenvironment{question}{\item }{}
+% \newenvironment{solution}{}{}
+\excludecomment{solution}
+\newenvironment{answerlist}{\begin{multicols}{3}\begin{enumerate}}{\end{enumerate}\end{multicols}}
+\newcommand{\setzerocols}{
+  \renewenvironment{answerlist}{\begin{enumerate}}{\end{enumerate}}
+}
+\newcommand{\setncols}[1]{
+  \renewenvironment{answerlist}{\begin{multicols}{#1}\begin{enumerate}}{\end{enumerate}\end{multicols}}
+}
+
+
+\newcommand{\answerbox}{\raisebox{3mm}{%
+    \fbox{%
+          \begin{minipage}[t]{2mm}%
+              \hspace*{2mm}%
+              \vspace*{0.3cm}
+          \end{minipage}
+         }
+    }
+}
+
+\newcommand{\answerline}{
+    \answerbox\hspace*{-1mm}a \hspace*{3mm}
+    \answerbox\hspace*{-1mm}b \hspace*{3mm}
+    \answerbox\hspace*{-1mm}c \hspace*{3mm}
+    \answerbox\hspace*{-1mm}d \hspace*{3mm}
+    \answerbox\hspace*{-1mm}e \hspace*{3mm}
+    \answerbox\hspace*{-1mm}f \hspace*{3mm}
+}
+
+\newcommand{\fiobox}{
+\fbox{
+  \begin{minipage}{42em}
+    Имя, фамилия и номер группы:\vspace*{3ex}\par
+    \noindent\dotfill\vspace{2mm}
+  \end{minipage}
+}
+}
+
+% делаем короче интервал в списках
+\setlength{\itemsep}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+
+\begin{document}
+
+Part I. Only numeric answer is checked, you can attempt all questions but the maximal grade is 4 points. 
+	\begin{enumerate}
+	\item I have a sample \(X_1, \ldots, X_{90}\).
+	I generate one naive bootstrap sample \(X^*_1, \ldots, X^*_{90}\).
+	
+	Let \(N\) be the number of times the first observation will be copied in the bootstrap sample.
+	
+	
+	What is the probability that the first observation will be present in the bootstrap sample more than once?
+	
+		
+	
+	\item We have data of an AB experiment: \(\bar X_a = 5.4\), \(\bar X_b = 6\),
+		\(n_a = 18\), \(n_b = 15\), \(\sum (X_i^a - \bar X_a)^2 = 890\),
+		\(\sum (X_i^b - \bar X_b)^2 = 800\).
+
+		Calculate the estimate of variance of \(\bar X_a - \bar X_b\) for the Welch test.
+
+		\item I have five results of two runners A and B for the 5 km race:
+
+		16:49 (B), 21:17 (A), 18:30 (B), 6:18 (B), 20:16 (A), 15:39 (B).
+		
+		Calculate Mann-Whitney statistic \(U_A\) that tests the null-hypothesis of equal distributions of time.
+		(The statistic \(U_A\) should positively depend on the ranks of the runner A).
+		\item I have 30 hypothesis with independent statistics. The null hypothesis for all 30
+		cases is actually true, but I don't know this.
+		
+		I calculate all p-values.
+		If the 4 lowest p-value are simultaneously lower than 0.01 I wrongly conclude that not all \(H_0\) are true. Otherwise I correctly conclude that all \(H_0\) are true.
+		
+		What is the probability that I will get the correct conclusion?
+		
+		\item My target variable is binary and I wish minimal detectable effect equal to 0.04, probability of I-error not greater than 0.01, probability of II-error not greater than 0.3. The control and experimental group
+		are of the same size equal to \(n\).
+		
+		Which minimal value of \(n\) is sufficient in the worst case?
+		\item Vasiliy loves to eat shaurma. He has \(6\) local shaurma dealers. Vasiliy bought \(5\) shaurmas
+from each dealer and measured their weight. He would like to test the hypothesis that mean weight is the
+same for all dealers.
+
+Total sum of squares is \(700\), between sum of squares is \(200\)
+Calculate the F -statistic to test the hypothesis.
+		
+		
+	\end{enumerate}
+	\newpage
+
+	Part II. Full solution is required, you can attempt all questions but the maximal grade is 6 points. 
+	\begin{enumerate}[resume]
+			\item Let random variables  be iid uniform $U[0;1]$.
+			Consider the original sample $Y_1$, \ldots, $Y_n$ and naive bootstrap sample $Y_1^*$, \ldots, $Y_n^*$.
+			
+			Let $N_1$ be the number of copies of $Y_1$ in the bootstrap sample. 
+
+			Find the distribution of $N_1$ when $n\to \infty$. 
+
+			\item I have invented the GCA, \textit{garbage component analysis}. 
+			It is completely similar to PCA with one exception: you \textit{minimize} the variance of components. 
+			First you find the component with minimal sample variance. Than you find the second component that is 
+			orthogonal to the first one with minimal variance. And so on. 
+
+			How my new garbage components are related to classic principal components?
+
+
+			\item Winnie-the-Pooh simulteneously tests $h$ null hypothesis using independent samples. 
+			All the null hypothesis are true but Winnie does not know it. 
+			
+			\begin{enumerate}
+				\item What is the expected value of the second lowest P-value?
+				\item What is the variance of the number of wrongly regected hypothesis if Winnie rejects all the hypothesis with P-value less $0.05$?
+			\end{enumerate}
+		
+		\item There are three continuosly distributed samples of the same size $n$, $X_1$, \ldots, $X_n$, $Y_1$, \ldots, $Y_n$,
+		$Z_1$, \ldots, $Z_n$. Imagine that the null hypothesis that all samples have the same distribution is true. 
+		
+		Consider the random variable $R_X$ — the sum of ranks of the $X$ sample in the pooled sample. 
+		
+		Find the correlation $\Corr(R_X, R_Y)$.
+		\end{enumerate}
+		
+	
+
+\end{document}
+

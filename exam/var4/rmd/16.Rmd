@@ -1,0 +1,39 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+p = sample(1:9, size = 1) / 10
+alpha = sample(1:9, size = 1) / 100
+sigma2 = sample(2:4, size = 1)^2
+mu = sample(2:9, size = 1) * 100
+
+sol = alpha * mu * p * (1-p)
+sol_round = round(sol, digits = 2)
+```
+
+Question
+========
+Consider three variables: target variable $y_i$, predictor $x_i$ and indicator of treatment $z_i \in \{0,1\}$.
+
+The treatment $z_i$ was designed to be independent of $x_i$, but in fact $x_i = f_i \cdot (1 + `r alpha` z_i)$.
+
+We suppose that $z_i$ are Bernoulli with $p=`r p`$, $f_i \sim \mathcal{N}(`r mu`;`r sigma2`)$ and they are independent.
+
+Find the probability limit 
+$$
+    \mathrm{plim} \frac{\sum (x_i - \bar x)(z_i - \bar z)}{n-1}.    
+$$
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Mann–Whitney test
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/CUPED

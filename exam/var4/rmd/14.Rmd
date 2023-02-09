@@ -1,0 +1,32 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+na = sample(2:3, size = 1)
+nb = sample(3:4, size = 1)
+max_rank = na + sample(1:2, size = 1)
+
+sol = choose(max_rank - 1, na - 1) / choose(na + nb, na)
+sol_round = round(sol, digits = 2)
+```
+
+Question
+========
+I have results of two runners A and B: `r na` results for A and `r nb` results
+for B. The running time for both runners are continuously distributed and their distribution are equal.
+
+What is the probability that the maximal rank of running times of the runner A will be equal to `r max_rank`?
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Mann–Whitney test
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/Mann–Whitney test

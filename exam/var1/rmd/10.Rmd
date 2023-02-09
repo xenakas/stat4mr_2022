@@ -1,0 +1,61 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+
+# const <- round(runif(1,-55,-35), 2)+10
+x <- round(runif(1,0.1,0.12), 2)/10
+gender <- round(runif(1,0.2,0.6), 2)
+age <- round(runif(1,0.1,0.8), 2)
+
+x_avg <- sample(2:4, size = 1) * 10
+age_avg <- round(rnorm(1,32,10),0) 
+
+const <- 0
+reg_0 <- const+x*x_avg+gender*0+age*age_avg
+reg_1 <- const+x*x_avg+gender*1+age*age_avg
+
+const <- -round((reg_0+reg_1)/2)
+reg_0 <- const+x*x_avg+gender*0+age*age_avg
+reg_1 <- const+x*x_avg+gender*1+age*age_avg
+
+sol_round <- plogis(reg_1) - plogis(reg_0)
+sol_round <- abs(round(sol_round, 2))
+
+
+```
+
+Question
+========
+
+We have the following data: 
+
+$y$ — explained binary variable that equals to 1 if a person has bought popcorn at the cinema,
+
+$x$ — person's income in thousand rub with the average of $`r x_avg`$,
+
+$gender$ — binary variable, that equals to 1 for men, 0 for women,
+
+$age$ — person's age   with the average of  $`r age_avg`$.
+
+After estimating a logit regression we get
+$$
+\widehat{P}(y_i=1) = \Lambda(`r const` + `r x` \cdot x_i + `r gender` \cdot gender_i + `r age` \cdot age_i).
+$$
+
+Calculate the absolute difference of probability of buying popcorn for males and females with average age and income.
+
+Provide the absolute value rounded  up to 2 decimal digits as the answer.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: logit

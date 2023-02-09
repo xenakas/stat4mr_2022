@@ -1,0 +1,44 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+
+n = sample(1:5, size = 1) * 100 / 2
+j = sample(3:7, size = 1)
+g = 3
+
+e1 = round(runif(1, 0.7, 3), 2) /20
+e2 = round(runif(1, 1, 4), 2) /20
+
+
+lam = (1/(1+e1)) *(1/(1+e2))
+
+chi = -(n-(j+g)/2-1) * log(lam)
+sol_round = round(1 - pchisq(chi, j * (g - 1)), 2)
+
+```
+
+Question
+========
+
+Suppose we conduct LDA analysis to determine number of visits to "Hilton Hotel" during the season (1, 2 or 3 times) based on $`r j`$ explanotary variables.
+
+There are $`r n`$ observations. 
+
+The eigenvalues for discriminant functions are $\gamma_1=`r e1`$ and $\gamma_2=`r e2`$.
+Test whether the groups are significantly different from each other. 
+
+Provide the p-value for the corresponding test rounded up to 2 decimal digits as the answer.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: LDA

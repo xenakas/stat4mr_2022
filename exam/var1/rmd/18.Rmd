@@ -1,0 +1,39 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+
+
+th_a = sample(1:5, size = 1) / 10
+
+th_b = th_a + sample(1:4, size = 1) / 10
+
+
+ent = (1-th_a)*log((1-th_a)/(1-th_b)) + th_a*log((th_a)/(th_b))
+
+sol_round = round(ent, 2)
+
+
+```
+Question
+========
+
+Company $A$ can go bankrupt with probability $\theta_A = `r th_a`$, company $B$ — with probability $\theta_B = `r th_b`$.
+
+Calculate the Kullback-Leibler divergence from the indicator of bankruptcy of the company $A$ 
+to the indicator of bankruptcy of company $B$.
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: KL
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: KL

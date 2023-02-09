@@ -1,0 +1,32 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+n_obs = sample(5:9, size = 1) * 10
+
+sol_round = round(n_obs * (1 - 1/n_obs)^n_obs, digits = 2)
+```
+
+Question
+========
+I have a sample $X_1, \ldots, X_{`r n_obs`}$.
+I generate one naive bootstrap sample $X^*_1, \ldots, X^*_{`r n_obs`}$.
+
+Let $L$ be the number of initial observations missing in the bootstrap sample. 
+
+Find the expected value $\mathbb{E}(L)$.
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Bootstrap

@@ -1,0 +1,92 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+
+bmatrix = function(x, digits = 3) {
+    text = "\\begin{bmatrix}\n"
+    
+    x = as.matrix(x)
+    x = round(x, digits = digits)
+    for (i in 1:nrow(x)) {
+        for (j in 1:ncol(x)) {
+            if (is.na(x[i, j])) {
+                text = paste0(text, "", " & ")
+            } else {
+                text = paste0(text, x[i, j], " & ")
+                
+            }
+        }
+        text = paste0(text, "\\\\\n")
+        
+    }
+    text = paste0(text, "\\end{bmatrix}")
+    return(text)
+}
+
+
+
+
+k1 = sample(1:4, 1)
+k2 = 5 - k1
+nn <- k1 + k2
+dat1 <- matrix(round(runif(k1 * 2, 1, 4), 0), nrow = k1) * 2
+dat2 <- matrix(round(runif(k2 * 2, 6, 10), 0), nrow = k2) * 3
+dat <- rbind(dat1, dat2)
+
+df <- dat
+
+euclidean <- function(a, b) sqrt(sum((a - b)^2))
+
+dfdf <- matrix(0, nrow = nn, ncol = nn)
+dfdf_plt <- matrix(NA, nrow = nn, ncol = nn)
+
+for (i in 1:nn) {
+    for (j in 1:nn) {
+        dfdf[i, j] <- dfdf_plt[i, j] <- round(euclidean(df[i, ], df[j, ]), 1)
+        if (i < j) {
+            dfdf_plt[i, j] <- NA
+        }
+    }
+}
+
+hc <- hclust(round(dist(dat), 1), method = "single")
+
+hc3 <- cutree(hc, k = 2)
+
+sol_round <- max(table(hc3))
+
+sol_round
+
+
+
+```
+
+Question
+========
+
+Suppose we have the following distance matrix:
+
+$$
+ `r bmatrix(dfdf_plt)`
+$$
+
+We apply single linkage hierarchical agglomerative clustering to find 2 clusters. 
+
+How many observations will be in the biggest cluster?
+
+Single linkage means that the distance between clusters is measured as minimal distance
+between the members. 
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: dendrogram

@@ -1,0 +1,51 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+na = sample(2:3, size = 1)
+nb = sample(3:4, size = 1)
+
+ma = sample(0:2, size = 1)
+mb = sample(0:2, size = 1)
+
+timesa <- paste0(sample(19:(19+ma),na, replace = TRUE), sample(0:59,na))
+timesb <- paste0(sample(19:(19+mb),nb, replace = TRUE), sample(0:59,nb))
+
+times <- sub("(\\d+)(\\d{2})", "\\1:\\2", c(timesa, timesb)) 
+names <- c(rep('(A)',na),rep('(B)',nb))
+
+
+
+ind <- sample(1:(na+nb), na+nb)
+
+text <- paste(times, names)
+
+
+sol_round = wilcox.test(as.numeric(timesa),as.numeric(timesb), paired=FALSE, exact=TRUE)[[1]][[1]]
+```
+
+Question
+========
+
+I have five results of two runners A and B for the 5 km race: 
+
+
+`r text[ind]`.
+
+Calculate Mann-Whitney statistic $U_A$ that tests the null-hypothesis of equal distributions of time.
+
+(The statistic $U_A$ should positively depend on the ranks of the runner A).
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Sample size
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market research/Partial correlation

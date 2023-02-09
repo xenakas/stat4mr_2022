@@ -4,4 +4,7 @@
 *.out
 *.blg
 *.fls
+*.xdv
+*.fdb_latexmk
 
+stud-online*

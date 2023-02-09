@@ -1,0 +1,28 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+a = sample(1:10, size = 1)
+b = sample(1:10, size = 1)
+
+sol = sum(c(max(a,a),max(a,b),max(b,a),max(b,b))*1/4)
+sol_round = round(sol, digits = 2)
+
+```
+
+Question
+========
+Consider a sample of two observations: $\{x_1,x_2\} = \{`r a`, `r b`\}$. Find the expected value of bootstrapped sample maximum $E(\max{x^*})$ if bootstrap sample size is 2.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Bootstrap
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/Bootstrap

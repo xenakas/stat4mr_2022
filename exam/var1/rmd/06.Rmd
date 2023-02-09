@@ -1,0 +1,65 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+
+dat = matrix(round(runif(4, 1, 100), 0), nrow = 2)
+
+nc = colSums(dat)
+nr = rowSums(dat)
+nn = sum(dat)
+
+# dat
+
+chi = 0
+
+for (i in 1:2) {
+  for (j in 1:2) {
+    fe = nc[i] * nr[j] / nn
+    chi = chi + (dat[i, j] - fe)^2 / fe
+  }
+}
+
+
+phi = sqrt(chi / nn)
+
+
+# fet <- matrix(round(runif(2,1,10), 1), nrow = 2)
+# mean <- matrix(round(runif(2,1,10), 1), nrow = 2)
+# pc <- matrix(round(runif(2,1,10), 3), nrow = 2)
+# 
+# sol_round <- round(t(pc)%*%(fet-mean),2)[1,1]
+# 
+sol_round <- round(phi, 2)
+
+```
+
+Question
+========
+
+Suppose we have data on daily web-site visits for registered and non - registered users:
+
+$$
+\begin{array}{lrc} 
+\text { Number of visits } & \text { Registered } & \text { Non-registered } \\
+\hline \text { Less than 5 } & `r dat[1,1]` & `r dat[1,2]` \\
+\text { More or equal to 5  } & `r dat[2,1]`  & `r dat[2,2]`
+\end{array}
+$$
+
+Measure of the strength of association using phi coefficient.
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: phi

@@ -1,0 +1,62 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+x = rnorm(30,0.2,10)+10
+y = rnorm(30,4,2)+10
+k = rnorm(30,-1,0.2)+10
+
+a = 2*x+y+rnorm(30,0,1)
+b = 0.2*k+y+rnorm(30,0,1)
+z = 6*x+0.5*k+rnorm(30,0,1)
+
+data = data.frame(a,b,z)
+
+sa = sum(a^2)-sum(a)^2/30
+sb = sum(b^2)-sum(b)^2/30
+sz = sum(z^2)-sum(z)^2/30
+sab = sum(a*b)-sum(a)*sum(b)/30
+sbz = sum(z*b)-sum(z)*sum(b)/30
+saz = sum(a*z)-sum(a)*sum(z)/30
+rab = sab/sqrt(sa*sb)
+rbz = sbz/sqrt(sz*sb)
+raz = saz/sqrt(sa*sz)
+
+
+rab_z = (rab-(raz*rbz))/sqrt((1-raz^2)*(1-rbz^2))
+
+
+sol = rab - rab_z
+sol_round = round(sol, digits = 2)
+```
+
+Question
+========
+Consider we have a sample of 30 observations for Price $P$, Quantity Sold $Q$ and the Good Quality  $Z$. 
+We know  that  
+$\sum{P} = `r round(sum(a),2)`$,
+$\sum{Q} = `r round(sum(b),2)`$,
+$\sum{Z} = `r round(sum(z),2)`$,
+$\sum{P^2} = `r round(sum(a^2),2)`$,
+$\sum{Q^2} = `r round(sum(b^2),2)`$,
+$\sum{Z^2} = `r round(sum(z^2),2)`$,
+$\sum{PQ} = `r round(sum(a*b))`$,
+$\sum{QZ} = `r round(sum(b*z))`$,
+$\sum{PZ} = `r round(sum(a*z))`$.
+
+
+Calculate $r_{PQ} - r_{PQ-Z}$, where $r_{PQ}$ is Pearson correlation and $r_{PQ-Z}$ is partial correlation.
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Partial correlation
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/Partial correlation

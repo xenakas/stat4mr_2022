@@ -1,0 +1,64 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+corrM = diag(nrow = 3)
+corrM[1, 2] = sample(c(-2, -1, 1, 2), size = 1) / 10
+corrM[2, 3] = sample(c(-2, -1, 1, 2), size = 1) / 10
+
+corrM[2, 1] = corrM[1, 2]
+corrM[3, 1] = corrM[1, 3]
+corrM[3, 2] = corrM[2, 3]
+
+eigs = eigen(corrM)
+
+mean = round(runif(3, 1, 10), 1)
+
+fet = mean + round(runif(3, -2, 2), 1)
+pc = eigs$vectors[, 1]
+
+bmatrix = function(x, digits = 3) {
+  text = '\\begin{pmatrix}\n'
+  
+  x = as.matrix(x)
+  x = round(x, digits = digits)
+  for (i in 1:nrow(x)) {
+    line = paste0(x[i, ], sep = '', collapse = ' & ')
+    text = paste0(text, line, '\\\\\n')
+  }
+  
+  text = paste0(text, '\\end{pmatrix}')
+  return(text)
+}
+
+
+
+sol_round <- round(t(pc) %*% (fet - mean), 2)
+
+
+```
+
+Question
+========
+
+We have three original variables. The mean vector is $`r bmatrix(mean)`$, all standard deviations are equal to 1.  
+
+The eigenvector of the correlation matrix that corresponds to a principal component is $`r bmatrix(pc)`$.
+
+Use PCA algorithm to transform the feature vector $`r bmatrix(fet)`$ into the given principal component. 
+
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: PCA

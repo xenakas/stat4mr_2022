@@ -1,0 +1,42 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+ab = 15
+shift_c = sample(1:5, size = 1) * 10
+ac = 40 + shift_c
+bc = 25 + shift_c
+shift_l = sample(1:5, size = 1) * 10 + 5
+aprime = 0 + shift_l
+cprime = 40 + shift_c + shift_l
+bprime = 15 + shift_l
+
+
+sol_round = bprime 
+```
+
+Question
+========
+Consider three points in high-dimensional space with Euclidean distances given by
+$\mathrm{dist}(a, b) = `r ab`$, $\mathrm{dist}(a, c) = `r ac`$, $\mathrm{dist}(b, c) = `r bc`$. 
+
+Bruce Willis places three points $a'$, $b'$ and $c'$ on the real line to minimize 
+$$
+(\mathrm{dist}(a, b) - \mathrm{dist}(a', b'))^2 + (\mathrm{dist}(b, c) - \mathrm{dist}(b', c'))^2 + (\mathrm{dist}(a, c) - \mathrm{dist}(a', c'))^2. 
+$$
+We know that $a' = `r aprime`$ and $c' = `r cprime`$. Find the value of $b'$.
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: multidimensional scaling

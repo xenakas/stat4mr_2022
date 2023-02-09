@@ -1,0 +1,39 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+hat_theta = sample(2:9, size = 1)
+se_hat_theta = sample(2:9, size = 1) / 10
+left_q = -2 - sample(2:9, size = 1) / 10
+right_q = 2 + sample(2:9, size = 1) / 10
+sol_round = hat_theta - right_q * se_hat_theta
+```
+
+Question
+========
+Winnie-the-Pooh has obtained the point estimate $\hat\theta = `r hat_theta`$ 
+with standard error $se(\hat\theta)= `r se_hat_theta`$.
+
+Winnie-the-Pooh does not remember the distribution of t-statistic, 
+so he uses t-bootstrap. 
+He calculates 10000 bootstrap samples, hence 10000 t-statistics $t^*_j$ and 
+two quantiles of the vector $t^*$. 
+
+Here they are: $q_{0.025}(t^*) = `r left_q`$, $q_{0.975}(t^*)= `r right_q`$.
+
+What is the left border of 95\% bootstrap CI?
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Bootstrap

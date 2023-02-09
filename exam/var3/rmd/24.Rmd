@@ -1,0 +1,53 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+var1 = sample(1:5, size = 1) * 10 
+var2 = sample(6:9, size = 1) * 10 
+c1 = sample(6:9, size = 1) * 10 
+c2 = sample(1:5, size = 1) * 10 
+B = sample(1:5, size = 1) * 1000
+n1 = sample(2:7, size = 1) 
+n2 = sample(2:7, size = 1) 
+
+
+root1 = sqrt((n1*10^5)^3/((n1*10^5) - 1)*var1/c1)
+root2 = sqrt((n2*10^5)^3/((n2*10^5) - 1)*var2/c2)
+
+
+s1 = B * root1 / (root1 * c1 + root2 * c2) 
+s2 = B * root2 / (root1 * c1 + root2 * c2) 
+
+B_check = s1 * c1 + s2 * c2
+
+sol_round = round(s1, digits = 0)
+```
+
+Question
+========
+My target variable $y$ is continuous. 
+I have two stratas of respondents with preliminary variance estimates, 
+total strata size and cost per one observation.
+
+My total budget is $`r B`$. I wish to estimate $\mathbb{E}(y_i)$. 
+    
+How much observations I should sample from the first strata?
+
+| Strata | Variance estimate | Strata size | Cost per obs |
+|:---:|:---:|:---:|:----:|
+|  1 | `r var1` | $`r n1` \cdot 10^5$ | `r c1` | 
+|  2 | `r var2` | $`r n2` \cdot 10^5$ | `r c2` | 
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Sample size
+extype: num
+exsolution: `r sol_round`
+extol: 1
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market research/Sample size

@@ -1,0 +1,31 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+mde = sample(1:5, size = 1) / 100
+beta = sample(1:3, size = 1) / 10
+alpha = sample(1:5, size = 1) / 100
+
+n = (qnorm(1 - alpha/2) + qnorm(1 - beta))^2 / 2 / mde^2
+sol_round = round(n, digits = 0)
+```
+
+Question
+========
+My target variable is binary and I wish minimal detectable effect equal to `r mde`, probability of I-error not greater than `r alpha`, probability of II-error not greater than ` beta`. The control and experimental group
+are of the same size equal to $n$.
+
+Which minimal value of $n$ is sufficient in the worst case?
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Sample size
+extype: num
+exsolution: `r sol_round`
+extol: 1
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market research/Sample size

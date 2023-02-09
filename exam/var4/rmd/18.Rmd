@@ -1,0 +1,70 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+
+
+#create data:
+x1 = rnorm(100)           # some continuous variables 
+x2 = rnorm(100)
+z = 1 + 0.3*x1 + 0.8*x2        # linear combination with a bias
+pr = 1/(1+exp(-z))         # pass through an inv-logit function
+y = rbinom(1000,1,pr)         
+
+#now feed it to glm:
+df = data.frame(y=y,x1=x1,x2=x2)
+model = glm( y~x1+x2,data=df,family="binomial")
+
+aaa <- summary(model)
+aaa1<- aaa$coefficients
+# aaa1
+y_n <- c(1,0,0,0)
+x1_n <- rnorm(4)
+x2_n <- rnorm(4)
+treatment <- data.frame(y=y_n,x1=x1_n,x2=x2_n)
+
+
+arr = predict(model, treatment, type = "response")
+dd = arr-arr[1]
+
+sol_round = which.min(abs(dd[2:4]))[[1]]
+
+```
+
+Question
+========
+We want to check wheter students in classes of smaller size have higher grades.    We have estimated the logistic regression to calculate propenisity scores based on two additional factors $x_1$ -- normalised average students' age, $x_2$ -- normalised average students' grade.
+
+We have the following observation from the group with smaller classes: 
+
+$x_1=`r treatment[1,2]`,  x_2=`r treatment[1,3]`$
+
+Which observation from the following subsample will be matched with that observation  by propensity score
+
+$$
+\begin{array}{rrrrr} 
+ \text { Observation number }&  \text { Treatment } &  x_1  &  x_2  & \text { Better grades } \\
+\hline 
+ \mathbf{1} & 0 & `r treatment[2,2]` & `r treatment[2,3]` & 1 \\
+ \mathbf{2} & 0 & `r treatment[3,2]` & `r treatment[3,3]`  & 0 \\
+ \mathbf{3} & 0 &  `r treatment[4,2]`  & `r treatment[4,3]`   & 1
+\end{array}
+$$
+
+given that the estimated coefficients for the logistic regression for $p(treatment=1|x_1,x_2)$ are $\hat{\beta}_0 = `r aaa1[1,1]`$, $\hat{\beta}_1 = `r aaa1[2,1]`$ and $\hat{\beta}_2 = `r aaa1[3,1]`$?
+
+
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Matching
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Matching

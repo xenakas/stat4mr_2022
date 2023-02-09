@@ -1,0 +1,43 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+n = sample(10:20, size = 1) * 10
+na = sample(1:3, size = 1) * 10 
+nb = sample(1:5, size = 1) * 10 
+nc = n - na - nb
+
+pa = na / n
+pb = nb / n
+pc = nc / n
+
+lnL_ur = na * log(pa) + nb * log(pb) + nc * log(pc)
+lnL_r = na * log(1/3) + nb * log(1/3) + nc * log(1/3)
+
+LR = 2 * (lnL_ur - lnL_r)
+
+sol_round = round(LR, digits = 2)
+```
+
+Question
+========
+Vasiliy loves plov. During last `r n` days he had eaten `r na` plovs with lamb, `r nb` plovs with beef
+and `r nc` plovs with chicken. 
+
+Calculate the likelihood ratio statistic to test the null hypothesis that all types of plov have the same probability. 
+
+Provide the answer with 2 decimal digits.
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Contingency table

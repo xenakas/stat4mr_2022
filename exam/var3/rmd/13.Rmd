@@ -1,0 +1,45 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+a = rnorm(8,70,20)
+b = rnorm(12,90,20)
+
+
+METHOD <- "Wilcoxon rank sum test"
+
+# r <- 
+rs1 <- sum(rank(c(a,b))[1:8])
+rs2 <- sum(rank(c(a,b))[9:20])
+n1 <- 8
+n2 <- 12
+
+u1 = n1*n2+n1*(n1+1)/2-rs1
+u2 = n1*n2+n2*(n2+1)/2-rs2
+# u1+u2 
+# n1*n2
+
+
+sol = min(u1,u2)
+sol_round = round(sol, digits = 2)
+
+
+```
+
+Question
+========
+We have weight data for 8 females and  12 males (with no ties). The ranks for females' weights are $\{`r rank(c(a,b))[1:8]`\}$. Find the value of the statistic for Mann–Whitney U test.    
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Mann–Whitney test
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/Mann–Whitney test

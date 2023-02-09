@@ -1,0 +1,35 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+const = -sample(1:6, size = 1)/10
+a = sample(1:3, size = 1) 
+
+sol = plogis(const + 0.2 * a)
+sol_round = round(sol, digits = 2)
+```
+
+Question
+========
+We want to check whether students in classes of smaller size have higher grades.
+
+The dummy variable $small_i$ is the indicator of small class size, $a_i$ is the normalized student age.
+
+
+The logit equation is $\hat{\mathbb{P}}(small_i = 1) = \Lambda(`r const` + 0.2 a_i)$, where $\Lambda$ is the logistic function.
+
+What is the propensity score for a student with $a_i = `r a`$?
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Sample size
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market research/Matching

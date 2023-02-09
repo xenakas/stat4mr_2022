@@ -1,0 +1,45 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+p = sample(3:7, size = 1)
+r = sample(3:7, size = 1)
+t = sample(5:10, size = 1)
+tss=t*100
+b = sample(1:4, size = 1)
+bss=b*100
+
+
+ess = tss-bss
+
+msb = bss/(p-1)
+mse = ess/(p*(r-1))
+
+
+sol = msb/mse
+sol_round = round(sol, digits = 2)
+
+```
+
+Question
+========
+Vasiliy loves to eat shaurma. He has $`r p`$ local shaurma dealers. Vasiliy bought $`r r`$ shaurmas
+from each dealer and measured their weight. He would like to test the hypothesis that mean weight is the
+same for all dealers.
+
+Total sum of squares is $`r tss`$, between sum of squares is $`r bss`$
+Calculate the F -statistic to test the hypothesis. 
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: ANOVA
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: ANOVA

@@ -1,0 +1,93 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+\usepackage{a4wide,color,url,amsmath,amsthm,amssymb,booktabs,longtable,eurosym}
+\newenvironment{question}{\item \textbf{Problem}\newline}{}
+\newenvironment{solution}{\textbf{Solution}\newline}{}
+\newenvironment{answerlist}{\renewcommand{\labelenumi}{(\alph{enumi})}\begin{enumerate}}{\end{enumerate}}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\DeclareMathOperator{\Cov}{Cov}
+\DeclareMathOperator{\Corr}{Corr}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\E}{E}
+\let\H\relax
+\DeclareMathOperator{\H}{H}
+\def \hb{\hat{\beta}}
+\def \hs{\hat{\sigma}}
+\def \htheta{\hat{\theta}}
+\def \s{\sigma}
+\def \hy{\hat{y}}
+\def \hY{\hat{Y}}
+\def \v1{\vec{1}}
+\def \e{\varepsilon}
+\def \he{\hat{\e}}
+\def \z{z}
+\def \hVar{\widehat{\Var}}
+\def \hCorr{\widehat{\Corr}}
+\def \hCov{\widehat{\Cov}}
+\def \cN{\mathcal{N}}
+
+\let\P\relax
+\DeclareMathOperator{\P}{\mathbb{P}}
+
+\DeclareMathOperator{\plim}{plim}
+
+
+\begin{document}
+	\begin{enumerate}
+		
+		
+		\input{exercise08}
+		\input{exercise11}
+		\input{exercise06}
+		\input{exercise22}
+		\input{exercise25}
+		\input{exercise28}
+		
+		
+	\end{enumerate}
+
+
+	\newpage
+
+\begin{enumerate}
+    \item Let random variables $Y_1$, \ldots, $Y_n$ be iid uniform $U[0;1]$.
+    Consider the naive bootstrap sample $Y_1^*$, \ldots, $Y_n^*$.
+    
+    Find $\P(Y_1^* = Y_1)$, $\Cov(Y_1^*, Y_2)$, $\P(\max\{Y_1, \ldots, Y_n\} = \max\{Y_1^*, \ldots, Y_n^*\})$.
+    
+    \item The eigenvalues of sample correlation matrix are $2.5$, $0.3$ and $0.2$. 
+    The eigenvalue $\lambda=2.5$ corresponds to eigenvector $v=(3, 4, -2)$.
+
+    \begin{enumerate}
+        \item James Bond predicts every original variable using multivariate regression on the first two components.
+        What is the average value of $R^2$ he will get? 
+        \item Express the first principal component in terms of scaled original variables $a$, $b$ and $c$. 
+    \end{enumerate}
+    \item Winnie-the-Pooh simulteneously tests $h$ null hypothesis using independent samples. 
+    All the null hypothesis are true but Winnie does not know it. 
+    
+    \begin{enumerate}
+        \item What is the expected value of the lowest P-value?
+        \item What is the expected number of wrongly regected hypothesis if Winnie rejects all the hypothesis with P-value less $0.1$?
+    \end{enumerate}
+
+
+\item There are three continuosly distributed samples of the same size $n$, $X_1$, \ldots, $X_n$, $Y_1$, \ldots, $Y_n$,
+$Z_1$, \ldots, $Z_n$. Imagine that the null hypothesis that all samples have the same distribution is true. 
+
+Consider the random variable $R_X$ — the sum of ranks of the $X$ sample in the pooled sample. 
+
+\begin{enumerate}
+    \item Find the expected value $\E(R_X)$.
+    \item What is the probability that $R_X$ will be equal to $n(n+1)/2$?
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}
+

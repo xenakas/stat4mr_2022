@@ -1,0 +1,24 @@
+
+\begin{question}
+We want to check wheter students in classes of smaller size have higher grades. We have estimated the logistic regression to calculate propenisity scores based on two additional factors \(x_1\) -- normalised average students' age, \(x_2\) -- normalised average students' grade.
+
+We have the following observation from the group with smaller classes:
+
+\(x_1=-0.3938865, x_2=1.0140306\)
+
+Which observation from the following subsample will be matched with that observation by propensity score
+
+\[
+\begin{array}{rrrrr} 
+ \text { Observation number }&  \text { Treatment } &  x_1  &  x_2  & \text { Better grades } \\
+\hline 
+ \mathbf{1} & 0 & -2.2511314 & 1.406232 & 1 \\
+ \mathbf{2} & 0 & 1.7206155 & 1.0493545  & 0 \\
+ \mathbf{3} & 0 &  0.408992  & -1.137104   & 1
+\end{array}
+\]
+
+given that the estimated coefficients for the logistic regression for \(p(treatment=1|x_1,x_2)\) are \(\hat{\beta}_0 = 1.076747\), \(\hat{\beta}_1 = 0.3286966\) and \(\hat{\beta}_2 = 0.8289508\)?
+\end{question}
+
+

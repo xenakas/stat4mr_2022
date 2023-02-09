@@ -1,0 +1,32 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+a = sample(1:9, size = 1)
+b = a + sample(1:5, size = 1)
+lama = 1 / a
+lamb = 1 / b
+kl = -(log(lamb) - log(lama) + 1 - (lamb / lama))
+
+sol_round = round(kl, digits = 2)
+```
+
+Question
+========
+Calculate the Kullback-Leibler divergence from exponential distribution with mean $`r a`$
+to exponential distribution with mean $`r b`$.
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Kullback Leibler

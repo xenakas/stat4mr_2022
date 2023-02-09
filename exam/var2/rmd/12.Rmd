@@ -1,0 +1,34 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+n = sample(1:5, size = 1) * 10
+xvar = sample(1:5, size = 1)
+xe = sample(1:5, size = 1)
+
+sol_round = 2 * (n - 1) * xvar^2 
+```
+
+Question
+========
+Variables $X_1$, $X_2$, \ldots, $X_{`r n`}$ are independent and normally distributed $\mathcal{N}(`r xe`; `r xvar`)$.
+
+Calculate the variance 
+$$
+\mathrm{Var}\left(\sum_{i=1}^{`r n`}(X_i - \bar X)^2\right).
+$$
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Welch test

@@ -1,0 +1,85 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+
+dat1 <- matrix(round(runif(4,1,4), 0), nrow = 2)
+dat2 <- matrix(round(runif(6,6,10), 0), nrow = 3)
+dat<-rbind(dat1,dat2)
+
+df<-dat
+
+start1 <- round(runif(2,1,10), 0) + 0.01
+start1 <-matrix(rep(start1,5), nrow = 5, byrow = T)
+
+start2 <- round(runif(2,1,10), 0)
+start2 <-matrix(rep(start2,5), nrow = 5, byrow = T)
+
+dat <- as.data.frame(dat)
+
+dat['d1']<-sqrt(rowSums((dat[,1:2] - start1)^2))
+dat['d2']<-sqrt(rowSums((dat[,1:2] - start2)^2))
+
+cl1 <- 0 
+cl2 <- 0 
+for (i in 1:5){
+  if (dat[i,3]<dat[i,4]){
+    cl1<-cl1+1
+  }else{
+    cl2<-cl2+1
+  }
+}
+
+
+sol_round <- abs(cl1-cl2)
+
+
+
+
+bmatrix = function(x, digits = 3) {
+  text = '\\begin{pmatrix}\n'
+  
+  x = as.matrix(x)
+  x = round(x, digits = digits)
+  for (i in 1:nrow(x)) {
+    line = paste0(x[i, ], sep = '', collapse = ' & ')
+    text = paste0(text, line, '\\\\\n')
+  }
+  
+  text = paste0(text, '\\end{pmatrix}')
+  return(text)
+}
+
+
+```
+
+Question
+========
+
+Suppose we have the following data:
+
+$$
+X = `r bmatrix(df)`
+$$
+
+We initialize k-means algorithm with initial cluster centers: 
+$c_1 = (`r start1[1,]`)$ and 
+$c_2 = (`r start2[1,]`)$.
+
+Calculate how many observations will be in each class after the first step of the algorithm.
+
+Provide the absolute difference of these values as the answer.
+
+Solution
+========
+
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: k-means

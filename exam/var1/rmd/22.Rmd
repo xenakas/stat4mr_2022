@@ -1,0 +1,43 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+n = sample(1:4, size = 1) * 10
+n_lowest = sample(2:4, size = 1)
+
+alpha = sample(1:5, size = 1)
+p = alpha / 100 
+
+
+conclusions = c('correct', 'wrong')
+p_correct = round(pbinom(n_lowest - 1, size = n, prob = p), digits = 2)
+sols = c(p_correct, 1 - p_correct)
+
+id = sample(1:2, size = 1)
+
+conclusion = conclusions[id]
+sol_round = sols[id]
+```
+
+Question
+========
+I have `r n` hypothesis with independent statistics. The null hypothesis for all `r n`
+cases is actually true, but I don’t know this.
+
+I calculate all p-values. 
+If the `r n_lowest` lowest p-value are simultaneously lower than `r p` I wrongly conclude that not all $H_0$ are true. Otherwise I correctly conclude that all $H_0$ are true.
+
+What is the probability that I will get the `r conclusion` conclusion?
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Mann–Whitney test
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/Multiple comparison

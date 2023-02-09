@@ -1,0 +1,35 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+a <- rnorm(100,2,1)
+b <- rnorm(200,4,10) 
+
+tt1 <- t.test(a, b,var.equal = TRUE)
+tt2 <- t.test(a, b,var.equal = FALSE)
+
+# 100+200-2-(var(a)/100+var(b)/200)^2/(var(a)^2/100^2/99+var(b)^2/200^2/199)
+td <- tt1[[2]] - tt2[[2]]
+sol_round <- round(td[[1]], digits = 2)
+sol_round
+```
+
+Question
+========
+You have two normally distributes samples with $N_x=100$,  $N_y=200$, $\overline{X} = `r round(mean(a),3)`$, $\overline{Y} = `r round(mean(b),3)`$, $\widehat{Var}{X} =  `r round(var(a),3)`$,  $\widehat{Var}{Y} =  `r round(var(b),3)`$
+
+Find the difference between number of degrees of freedom for $t$-test and Welch test. 
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Welch test
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market Research/Welch test
+

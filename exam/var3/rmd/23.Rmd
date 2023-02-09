@@ -1,0 +1,36 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+set.seed(777)
+options(scipen=100)
+x = rexp(100, 1/2)
+
+lq = t.test(x)[[4]][1]
+uq = t.test(x)[[4]][2]
+
+xm = mean(x)
+xsd = sd(x)
+xc = xsd/xm
+
+sol_round = ceiling((qnorm(0.025)*xc/0.01)^2)
+```
+
+Question
+========
+We've  calculated 95\%-confidence interval for the average call length  $(`r round(lq,2)`,`r round(uq,2)`)$ using data from 100 clients. 
+Find the minimum sample size required to achieve precision up to 1\%.
+
+
+Solution
+========
+
+
+Meta-information
+================
+exname: Sample size
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Market research/Sample size

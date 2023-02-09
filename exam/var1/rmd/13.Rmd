@@ -1,0 +1,39 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+x = c(1, 5, 1, 5)
+y = c(2, 2, 1, 1)
+addx = sample(1:5, size = 1)
+addy = sample(1:5, size = 1)
+x = x + addx
+y = y + addy
+
+ans = (y[2] + y[4]) / 2
+
+sol_round = round(ans, digits = 2)
+```
+
+Question
+========
+Consider 4 points: $(`r x[1]`, `r y[1]`)$, $(`r x[2]`, `r y[2]`)$, $(`r x[3]`, `r y[3]`)$ and
+$(`r x[4]`, `r y[4]`)$. Elon Musk applies k-means to find two clusters in these points. 
+
+The distance is Euclidean, initial cluster centers are $c_1= (`r x[1]`, `r y[1]`)$ and $c_2 = (`r x[2]`, `r y[2]`)$.
+
+Calculate the center of the second cluster after infinitely many iterations. 
+
+Provide the ordinate of the second cluster as the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: k-means

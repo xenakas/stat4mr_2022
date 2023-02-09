@@ -1,0 +1,40 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+n_obs = sample(5:9, size = 1) * 10
+times = sample(1:2, size = 1)
+
+eq_signs = c('=', '\\leq', '\\geq')
+answers = c(dbinom(times, n_obs, 1/n_obs), 
+            pbinom(times, n_obs, 1/n_obs), 
+            1 - pbinom(times - 1, n_obs, 1/n_obs))
+ans_id = sample(1:3, size = 1)
+
+eq_sign = eq_signs[ans_id]
+sol_round = round(answers[ans_id], digits = 2)
+```
+
+Question
+========
+I have a sample $X_1, \ldots, X_{`r n_obs`}$.
+I generate one naive bootstrap sample $X^*_1, \ldots, X^*_{`r n_obs`}$.
+
+Let $N$ be the number of times the first observation will be copied in the bootstrap sample. 
+
+Find the probability $\mathbb{P}(N `r eq_sign` `r times`)$.
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.015
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: Bootstrap

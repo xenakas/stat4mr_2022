@@ -1,0 +1,45 @@
+```{r data generation, echo = FALSE, results = 'hide'}
+## DATA GENERATION
+b1 = sample(1:5, size = 1) / 10
+b2 = - sample(1:5, size = 1) / 10
+b3 = - sample(1:5, size = 1) / 10
+a = sample(1:5, size = 1) / 10
+b = sample(1:5, size = 1) / 10
+
+prob = plogis(b1 + b2 * a + b3 * b)
+variable = sample(c('a', 'b'), size = 1)
+if (variable == 'a') {
+  effect = prob * (1 - prob) * b2
+}
+if (variable == 'b') {
+  effect = prob * (1 - prob) * b3
+}
+
+
+sol_round = round(effect, digits = 2)
+```
+
+Question
+========
+Maria has estimated logit model, 
+$$
+\mathbb{P}(y=1 \mid a, b) = \Lambda(`r b1` `r b2`a  `r b3` b).
+$$
+Find the marginal effect of increase of `r variable` on probability for $a=`r a`$ and $b=`r b`$.
+
+Provide the answer with 2 decimal digits.
+
+Solution
+========
+
+
+Meta-information
+================
+exname: bootstrap ci 
+extype: num
+exsolution: `r sol_round`
+extol: 0.011
+exextra[Type]: Calculation
+exextra[Language]: Russian
+exextra[Level]: Literacy
+exsection: logit
